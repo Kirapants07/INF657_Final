@@ -1,0 +1,34 @@
+Midterm (Shopping List Structure)
+
+//Top level
+ShoppingList ({title, description, price, quantity})
+	useState items
+	<ItemList items= items /> //pass items state variable
+|
+V
+
+//child
+//allows user to add new items
+AddItem ({callback})
+
+
+
+
+//Child of ShoppingList; equivalent to TaskList --> import taskData
+//list of items
+ItemList ({items})
+	<FlatList />
+
+
+|
+V
+
+//Child of ItemList; equivalent to Task?
+//Single Item
+ListItem ({data})
+	<View 
+		title: {title},
+		description: {description},
+		...
+	/>
+
