@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Text,
   StyleSheet,
@@ -15,14 +15,27 @@ export default function ListItem({
   data,
   renderRightActions,
 }) {
-  
+  const [checked, setChecked] = useState(false); //useState for checkbox. Initial is false
+
+  const handleChange = () => {
+    setChecked(!checked); //toggle between true and false
+  };
+
   return (
     <Swipeable renderRightActions={renderRightActions}>
       <TouchableHighlight underlayColor={"#lightgrey"}>
         <>
           <View style={styles.mainContainer}>
             <Image style={styles.image} source={data.image} />
-            <Text style={styles.title}>{data.title}</Text>
+            <Text style={styles.title}>
+            <input 
+              type="checkbox"
+              checked={checked}
+              onChange={handleChange}
+              style={styles.checkBox}
+            />
+            {data.title}
+            </Text>
             <Text style={styles.description}>{data.description}</Text>
             <Text style={styles.description}>Price: ${data.price}.00</Text>
             <Text style={styles.description}>Quantity: {data.quantity}</Text>
@@ -60,4 +73,11 @@ const styles = StyleSheet.create({
     padding: 5,
     color: "black",
   },
+  checkBox: {
+    width: 20,
+    height: 20,
+    marginRight: 30,
+    marginLeft: 0,
+    border: "white",
+  }
 });
