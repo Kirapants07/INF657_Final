@@ -1,12 +1,12 @@
 /************************equivalent of TaskData */
 //Example Data
-export const ShoppingListData = [
+const ShoppingListData = [
     {
         id: 1,
         title: "Crayons",
         description: "A pack of 24 Crayons",
         price: 5,
-        image: require("../images/crayons.jpg"),
+        image: require("../../../images/crayons.jpg"),
         quantity: 3,
     },
     {
@@ -14,7 +14,7 @@ export const ShoppingListData = [
         title: "Pencils",
         description: "A pack of 72 Pencils",
         price: 10,
-        image: require("../images/pencils.jpg"),
+        image: require("../../../images/pencils.jpg"),
         quantity: 1,
     },
     {
@@ -22,8 +22,9 @@ export const ShoppingListData = [
         title: "Erasers",
         description: "A pack of 12 Erasers",
         price: 2,
-        image: require("../images/erasers.jpg"),
+        image: require("../../../images/erasers.jpg"),
         quantity: 20,
     },
   ];
   
+  export default ShoppingListData;

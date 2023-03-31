@@ -9,21 +9,23 @@ import {
 
 import Swipeable from "react-native-gesture-handler/Swipeable";
 
-//************************equivalent of Task*/
-//child component
-//represents a SINGLE ITEM in the shopping list
-//ListItem component should accept the item data as a prop, and display the item name and quantity.
-export default function ListItem({data}) {
+//Child of ItemList
+//A Single item in the shopping list
+export default function ListItem({
+  data,
+  renderRightActions,
+}) {
+  
   return (
-    // <Swipeable renderRightActions={renderRightActions}>
-    <Swipeable>
-      {/* <TouchableHighlight underlayColor={"#lightgrey"} onPress={data.onPress}> */}
-      <TouchableHighlight>
+    <Swipeable renderRightActions={renderRightActions}>
+      <TouchableHighlight underlayColor={"#lightgrey"}>
         <>
           <View style={styles.mainContainer}>
-            {/* <Image style={styles.image} source={data.image} /> */}
-            {/* <Text style={styles.title}>{data.title}</Text> */}
-            {/* <Text style={styles.description}>Description: {data.description}</Text> */}
+            <Image style={styles.image} source={data.image} />
+            <Text style={styles.title}>{data.title}</Text>
+            <Text style={styles.description}>{data.description}</Text>
+            <Text style={styles.description}>Price: ${data.price}.00</Text>
+            <Text style={styles.description}>Quantity: {data.quantity}</Text>
           </View>
         </>
       </TouchableHighlight>
@@ -34,10 +36,10 @@ export default function ListItem({data}) {
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
-    backgroundColor: "#b8860b",
-    flexDirection: "column",
+    backgroundColor: "#4fa6d1",
     padding: 25,
     paddingTop: 50,
+    marginBottom:5,
   },
   image: {
     height: 70,
@@ -53,7 +55,7 @@ const styles = StyleSheet.create({
     color: "black",
   },
   description: {
-    fontWeight: "bold",
+    fontWeight: "normal",
     fontSize: 25,
     padding: 5,
     color: "black",

@@ -1,32 +1,43 @@
-import React, { useState } from 'react';
-import {StyleSheet, Text} from 'react-native';
-import ItemList from './ItemList';
+import React, { useState } from 'react'
+import {
+    Text,
+    SafeAreaView,
+    StyleSheet,
+  } from "react-native";
+import ItemList from './ItemList'
+import Constants from 'expo-constants';
+import AddItem from './AddItem';
 
-//top-level component
-// ShoppingList accepts the following props:
-    // Title (string): the title of the item.
-    // Description (string): the description of the item.
-    // Price (integer): the price of the item.
-    // Image: the image of the item.
-    // Quantity: the quantity of the item.
-//{title, description, price, image, quantity}
-// Swipable buttons to edit and delete the items. 
+//Top level component
+export default function ShoppingList() {
+    const [items, setItems] = useState([]); //holds shopping list
 
-export default function ShoppingList({title, description, price, quantity}) {
-    //state variable called items that is initialized as an empty array.
-    const [items, setItems] = useState([]);
-  return (
-    <>
-      <Text style={styles.paragraph}>
-        <h1>Shopping List</h1>
-        <ItemList items={items} />
-      </Text>
-    </>
+    const callback = (item) => {
+      setItems(
+        [ item, ...items]
+      );
+      console.log("items(previous version): ");
+      console.log(items);
+    };
+
+      return (
+    <SafeAreaView style={styles.screen}>
+        <Text style={styles.center}>
+            <h1>Shopping List</h1>
+        </Text>
+        <AddItem callback={callback}/>
+        <ItemList items={items} setItems={setItems} />
+    </SafeAreaView>
   )
 }
 
 const styles = StyleSheet.create({
-    paragraph: {
-      fontSize: 30,
+    screen: {
+      paddingTop: Constants.StatusBarHeight,
+      flex: 1,
+      flexDirection: "column",
     },
-  });
+    center: {
+        textAlign: "center",
+    },
+});

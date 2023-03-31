@@ -32,3 +32,27 @@ ListItem ({data})
 		...
 	/>
 
+
+
+
+I. Technical Requirements (35 points)
+	XX 	The project must be created using Expo. (5 points)
+	X	A top-level component called ShoppingList is defined in the ShoppingList.js file. (5 points)
+		ShoppingList accepts the required props (Title, Description, Price, Image, Quantity). (5 points)
+		Swipable buttons are implemented to edit and delete the items. (5 points)
+		A child component called AddItem is defined, which allows the user to add new items to the shopping list. (5 points)
+	XX	A child component called ItemList is defined, which displays a list of items using FlatList. (5 points)
+	XX	A child component called ListItem is defined, which represents a single item in the shopping list. (5 points)
+II. Data Management (10 points)
+	X	The items state variable is defined in the ShoppingList component and initialized as an empty array. (3 points)
+		The callback function passed to the AddItem component updates the items state variable when a new item is added to the list. (3 points)
+	X	The items state variable is passed down to the ListItem component using prop drilling. (2 points)
+		State is used to manipulate data in the components. (2 points)
+III. Styling (5 points)
+		Styling is implemented to make the user interface visually appealing. (3 points)
+		Any styling techniques can be used, such as inline styles or external stylesheets. (2 points)
+IV. Submission (5 points)
+		The completed project is submitted as a GitHub repository. (5 points)
+
+
+
