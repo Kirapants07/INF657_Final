@@ -45,6 +45,7 @@ export default function AddItem({callback}) {
                 placeholder="New Item"
                 onChangeText={(title) => setTitle(title)}
                 value = {title}
+                multiline="true"
                 />
                 {/* input field for item  description */}
                 <TextInput

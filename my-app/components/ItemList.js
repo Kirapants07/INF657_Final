@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   FlatList,
   StyleSheet,
@@ -12,15 +11,35 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 //Parent of ListItem
 //displays a list of items
 export default function ItemList({items, setItems}) {
-  const [shoppingList, setShoppingList] = useState(items);
 
   const deleteItem = (id) => {
     console.log(id);
     setItems(items.filter((item) => item.id !== id));
   };
 
-  const editItem = (id) => {
-    console.log(id);
+  //edit 
+  const handleEdit = (id) => {
+    // if we have all required fields
+    if(title && description && price && quantity) {
+      console.log(id);
+      //delete current item
+      setItems(items.filter((item) => item.id !== id));
+      //add item again, with edited information
+      const item = {
+        id,
+        title,
+        description,
+        price: parseInt(price),
+        quantity: parseInt(quantity),
+      };
+      setItems(
+        [ item, ...items]
+      );          
+      console.log(item);
+    }
+    else {
+      alert("Missing required field(s)");
+    }
   };
 
   return (
@@ -40,7 +59,7 @@ export default function ItemList({items, setItems}) {
                     color="black"
                   />
                 </TouchableWithoutFeedback>
-                <TouchableWithoutFeedback onPress={() => editItem(item.id)}>
+                <TouchableWithoutFeedback onPress={() => handleEdit(item.id)}>
                   <MaterialCommunityIcons
                     name="file-edit"
                     size={40}
