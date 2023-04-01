@@ -6,7 +6,6 @@ import {
   Image,
   TouchableHighlight,
 } from "react-native";
-
 import Swipeable from "react-native-gesture-handler/Swipeable";
 
 //Child of ItemList
