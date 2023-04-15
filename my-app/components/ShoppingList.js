@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import {
     Text,
     SafeAreaView,
@@ -7,6 +7,8 @@ import {
 import ItemList from './ItemList'
 import Constants from 'expo-constants';
 import AddItem from './AddItem';
+import CustomButton from './shared/CustomButton';
+import { UserAuth } from '../context/AuthContext';
 
 //Top level component
 //accepts props title, description, price, image, and quantity
@@ -20,6 +22,18 @@ export default function ShoppingList({title, description, price, image, quantity
       );
     };
 
+    const {logOut } = UserAuth();
+
+    const onLogOut = async () => {
+      try{
+          await logOut();
+          navigation.navigate("SignIn");
+      }
+      catch(error) {
+          console.log(error);
+      }
+  };
+
       return (
     <SafeAreaView style={styles.screen}>
         <Text style={styles.center}>
@@ -27,6 +41,7 @@ export default function ShoppingList({title, description, price, image, quantity
         </Text>
         <AddItem callback={callback}/>
         <ItemList items={items} setItems={setItems} />
+        <CustomButton text="Log Out" onPress={onLogOut}/>
     </SafeAreaView>
   )
 }
@@ -34,7 +49,6 @@ export default function ShoppingList({title, description, price, image, quantity
 const styles = StyleSheet.create({
     screen: {
       paddingTop: Constants.StatusBarHeight,
-      flex: 1,
       flexDirection: "column",
     },
     center: {
