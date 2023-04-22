@@ -13,19 +13,18 @@ import {
   export const AuthContextProvider = ({ children }) => {
     const [user, setUser] = useState({});
   
-    const createUser = (email, password) => {
-      return createUserWithEmailAndPassword(auth, email, password);
+    const createUser = (email, password, displayName) => {
+      return createUserWithEmailAndPassword(auth, email, password, displayName);
     };
   
-    const updateUser = (name, email) => {
-      return updateProfile(auth.currentUser, {
+    const updateUser = async (name, email) => {
+      await updateProfile(auth.currentUser, {
         name,
         email,
         displayName: name,
-      }).then(() => {
+      });
         console.log(auth.currentUser.displayName, auth.currentUser.email);
         alert("Your Profile has been updated");
-      });
     };
   
     const signIn = (email, password) => {

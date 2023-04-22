@@ -6,24 +6,30 @@ import {
 } from "react-native";
 import ListItem from "./ListItem"; //single item
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { useContext, useState } from "react";
+import ShoppingListContext from "../context/ShoppingListContext";
 
 //Child of ShoppingList
 //Parent of ListItem
 //displays a list of items
-export default function ItemList({items, setItems}) {
+export default function ItemList() {
+  
   const deleteItem = (id) => {
     console.log(id);
-    setItems(items.filter((item) => item.id !== id));
+    // setItems(items.filter((item) => item.id !== id));
   };
 
+  const {shoppingList } = useContext(ShoppingListContext);
+  const [items, setItems] = useState([]);
+  
   return (
   <>
      <FlatList
-        data={items}
+        data={shoppingList}
         keyExtractor={(shoppingList) => shoppingList.id}
         renderItem={({ item }) => (
           <ListItem
-            data = {item}
+            data = {item.data}
             renderRightActions={() => (
               <View style={styles.deleteContainer}>
                 <TouchableWithoutFeedback onPress={() => deleteItem(item.id)}>

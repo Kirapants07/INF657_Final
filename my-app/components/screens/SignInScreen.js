@@ -27,10 +27,6 @@ export default function SignInScreen() {
         }
     };
 
-    const onSignInGoogle = () => {
-        console.log("Sign In Google");
-    };
-
     const onLogOut = async () => {
         try{
             await logOut();
@@ -59,7 +55,6 @@ export default function SignInScreen() {
         <CustomInput placeholder="Email" value={email} setValue={setEmail} />
         <CustomInput placeholder="Password" value={password} setValue={setPassword} secureTextEntry={true} />
         <CustomButton text="Sign In With Email" onPress={onSignIn}/>
-        <CustomButton text="Sign In With Google" onPress={onSignInGoogle}/>
         <CustomButton text="Log Out" onPress={onLogOut}/>
         <CustomButton text="Forgot Password" onPress={onForgotPassword} bgColor="#4fa6d1" />
         <CustomButton text="Don't have an account? Sign Up" onPress={onSignUp} bgColor="#f5c542" />

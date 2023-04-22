@@ -40,6 +40,10 @@ export default function SignUpScreen() {
         setConfirmPassword("");
     };
 
+    const onLogIn = () => {
+        navigation.navigate("SignIn");
+    }
+
 
   return (
     <View style={styles.main}>
@@ -51,7 +55,8 @@ export default function SignUpScreen() {
         <CustomInput placeholder="Password" value={password} setValue={setPassword} secureTextEntry={true} />
         <CustomInput placeholder="Confirm Password" value={confirmPassword} setValue={setConfirmPassword} secureTextEntry={true} />
 
-        <CustomButton text="Sign Up" onPress={onRegister} bgColor="#f5c542" />
+        <CustomButton text="Sign Up" onPress={onRegister} />
+        <CustomButton text="Already have an account? Log In" onPress={onLogIn} bgColor="#f5c542" />
 
     </View>
   );

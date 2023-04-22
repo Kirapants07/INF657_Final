@@ -1,12 +1,20 @@
 import { SafeAreaView, StyleSheet } from "react-native";
-import Navigation from "./navigation/Navigation";
 import { AuthContextProvider } from "./context/AuthContext";
+import { NavigationContainer } from "@react-navigation/native";
+import MyTabs from "./navigation/BottomNavigation";
+import { ShoppingListProvider } from "./context/ShoppingListContext";
+import Navigation from "./navigation/Navigation";
 
 export default function App() {
   return (
     <SafeAreaView style={styles.root}>
       <AuthContextProvider>
-        <Navigation />
+        <ShoppingListProvider>
+          {/* <NavigationContainer> 
+            <MyTabs />
+          </NavigationContainer> */}
+          <Navigation />
+        </ShoppingListProvider>
       </AuthContextProvider>
     </SafeAreaView>
   );

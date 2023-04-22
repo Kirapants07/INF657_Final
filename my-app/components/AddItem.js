@@ -1,36 +1,41 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import CustomInput from './shared/CustomInput';
 import CustomButton from './shared/CustomButton';
+import ShoppingListContext from '../context/ShoppingListContext';
 
 export default function AddItem({callback}) {
+  const {addItem} = useContext(ShoppingListContext);
+
     const [title,setTitle] = useState('');
     const [description,setDescription] = useState('');
     const [price,setPrice] = useState('');
     const [quantity,setQuantity] = useState('');
-    const [id, setid] = useState(1);
+    // const [id, setid] = useState(1);
 
     // adds new item
     const handleSubmit = () => {
       // if we have all required fields
       if(title && description && price && quantity) {
         const item = {
-          id,
+          // id,
           title,
           description,
           price: parseInt(price),
           quantity: parseInt(quantity),
         };
-        callback(item); //send item to items useState in ShoppingList
-        console.log(item);
+        // callback(item); //send item to items useState in ShoppingList
         
+        addItem(item);
+        console.log(item);
+
         //reset fields
         setTitle('');
         setDescription('');
         setPrice('');
         setQuantity('');
-        setid(id+1); //increment id to make sure they are unique
+        // setid(id+1); //increment id to make sure they are unique
       }
       else {
         alert("Missing required field(s)");
