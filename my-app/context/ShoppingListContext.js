@@ -26,7 +26,7 @@ export const ShoppingListProvider = ({children}) => {
     const fetchItem = async () => {
         try { 
             const shoppingListRef = collection(db, "shoppinglist");
-            const q = query(shoppingListRef, orderBy("item"), limit(20));
+            const q = query(shoppingListRef, orderBy("title"), limit(20));
             const querySnapShot = await getDocs(q);
             const shoppingList = querySnapShot.docs.map((doc) => ({
                 id: doc.id,
@@ -93,6 +93,7 @@ export const ShoppingListProvider = ({children}) => {
         <ShoppingListContext.Provider value = {{shoppingList, addItem, editItem, updateItem, deleteItem, shoppingListEdit}}>
             {children}
         </ShoppingListContext.Provider>
+
   );
 };
 

@@ -1,7 +1,5 @@
 import { SafeAreaView, StyleSheet } from "react-native";
 import { AuthContextProvider } from "./context/AuthContext";
-import { NavigationContainer } from "@react-navigation/native";
-import MyTabs from "./navigation/BottomNavigation";
 import { ShoppingListProvider } from "./context/ShoppingListContext";
 import Navigation from "./navigation/Navigation";
 

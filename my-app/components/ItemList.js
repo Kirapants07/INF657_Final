@@ -14,12 +14,8 @@ import ShoppingListContext from "../context/ShoppingListContext";
 //displays a list of items
 export default function ItemList() {
   
-  const deleteItem = (id) => {
-    console.log(id);
-    // setItems(items.filter((item) => item.id !== id));
-  };
 
-  const {shoppingList } = useContext(ShoppingListContext);
+  const {shoppingList, deleteItem } = useContext(ShoppingListContext);
   const [items, setItems] = useState([]);
   
   return (
