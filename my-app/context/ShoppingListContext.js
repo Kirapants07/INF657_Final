@@ -39,7 +39,7 @@ export const ShoppingListProvider = ({children}) => {
         }
     };
     fetchItem();
-  }, []);
+  });
 
   //Add Item
   const addItem = (newItem) => {
