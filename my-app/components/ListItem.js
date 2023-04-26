@@ -13,6 +13,7 @@ import Swipeable from "react-native-gesture-handler/Swipeable";
 export default function ListItem({
   data,
   renderRightActions,
+  renderLeftActions,
 }) {
   const [checked, setChecked] = useState(false); //useState for checkbox. Initial is false
 
@@ -21,7 +22,8 @@ export default function ListItem({
   };
 
   return (
-    <Swipeable renderRightActions={renderRightActions}>
+    <Swipeable renderRightActions={renderRightActions} 
+    renderLeftActions={renderLeftActions}>
       <TouchableHighlight underlayColor={"#lightgrey"}>
         <>
           <View style={styles.mainContainer}>

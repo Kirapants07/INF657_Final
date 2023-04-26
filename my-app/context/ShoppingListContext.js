@@ -46,8 +46,8 @@ export const ShoppingListProvider = ({children}) => {
     try{
         const docRef = addDoc(collection (db, "shoppinglist"), newItem);
         console.log("Document written: ", docRef.id);
-        setShoppingList((previousTaskList) => [
-          ...previousTaskList, 
+        setShoppingList((previousShoppingList) => [
+          ...previousShoppingList, 
           {
             id: docRef.id,
             data: newItem
@@ -61,18 +61,31 @@ export const ShoppingListProvider = ({children}) => {
   
   //edit Item
   const editItem = (item) => {
-    setShoppingListEdit({ task, edit: true });
+    setShoppingListEdit({ item, edit: true });
   };
 
   //Update Item
-  const updateItem = (id, updItem) => {
-    const docRef = doc(db, shoppingList, id);
-    console.log(id, updItem);
-    updateDoc(docRef, updItem);
-    setShoppingList((previousShoppingList) => [
-      ...previousShoppingList,
-      { id: docRef.id, data: updItem },
-    ]);
+  const updateItem = async (id, updItem) => {
+    try {
+      const docRef = doc(db, "shoppingList", id);
+      await updateDoc(docRef, updItem);
+      const updatedShoppingList = shoppingList.map((item) => {
+        if (item.id === id) {
+          return {
+            id,
+            data: {
+              ...item.data,
+              ...updItem,
+            },
+          };
+        } else {
+          return item;
+        }
+      });
+      setShoppingList(updatedShoppingList);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   //Delete Item
