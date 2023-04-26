@@ -26,6 +26,7 @@ const styles = StyleSheet.create({
     screen: {
       paddingTop: Constants.StatusBarHeight,
       flexDirection: "column",
+      flex: 1,
     },
     center: {
         textAlign: "center",

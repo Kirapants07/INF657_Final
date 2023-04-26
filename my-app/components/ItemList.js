@@ -6,6 +6,7 @@ import {
   Modal,
   TextInput,
   TouchableOpacity,
+  Text,
 } from "react-native";
 import ListItem from "./ListItem"; //single item
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -21,10 +22,10 @@ export default function ItemList() {
   const [items, setItems] = useState([]);
 
   const [modalVisible, setModalVisible] = useState(false);
-  const [title,setTitle] = useState('');
-  const [description,setDescription] = useState('');
-  const [price,setPrice] = useState('');
-  const [quantity,setQuantity] = useState('');
+  const [title,setTitle] = useState("");
+  const [description,setDescription] = useState("");
+  const [price,setPrice] = useState("");
+  const [quantity,setQuantity] = useState("");
   const [id, setId] = useState(null);
 
   const handleEditItem = (item) => {
@@ -161,7 +162,7 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   button: {
-    backgroundColor: "#4CAF50",
+    backgroundColor: "#0a5273",
     padding: 10,
     borderRadius: 5,
     marginTop: 20,
