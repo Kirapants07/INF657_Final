@@ -1,4 +1,4 @@
-# INF657_Week_10
+# INF657_Final
 This project uses Expo and React-Native. 
 
 To run this project:
