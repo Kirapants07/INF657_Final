@@ -1,7 +1,8 @@
 import { SafeAreaView, StyleSheet } from "react-native";
-import { AuthContextProvider } from "./context/AuthContext";
-import { ShoppingListProvider } from "./context/ShoppingListContext";
-import Navigation from "./navigation/Navigation";
+import { AuthContextProvider } from "./src/context/AuthContext";
+import { ShoppingListProvider } from "./src/context/ShoppingListContext";
+import Navigation from "./Navigation";
+import 'react-native-gesture-handler';
 
 export default function App() {
   return (

@@ -1,10 +1,9 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import SignInScreen from '../components/screens/SignInScreen';
-import SignUpScreen from '../components/screens/SignUpScreen';
-import ForgotPasswordScreen from '../components/screens/ForgotPasswordScreen';
-import AddItem from '../components/AddItem';
-import ShoppingList from '../components/ShoppingList';
+import SignInScreen from './src/components/screens/SignInScreen';
+import SignUpScreen from './src/components/screens/SignUpScreen';
+import ForgotPasswordScreen from './src/components/screens/ForgotPasswordScreen';
+import ShoppingList from './src/components/ShoppingList';
 import MyTabs from './BottomNavigation';
 
 const Stack = createNativeStackNavigator();
@@ -20,5 +19,8 @@ export default function Navigation() {
             <Stack.Screen name ="ShoppingList" component={ShoppingList} />
         </Stack.Navigator>
     </NavigationContainer>
-  )
+  );
 }
+
+// const Tab = createBottomTabNavigator();
+ 

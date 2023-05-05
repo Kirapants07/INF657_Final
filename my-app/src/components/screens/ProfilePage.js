@@ -7,7 +7,7 @@ import {
   } from "react-native";
   import React, { useState } from "react";
   import { auth } from "../../firebase";
-  import defaultUser from "../../images/defaultUser.jpg";
+  import defaultUser from "../../../images/defaultUser.jpg";
 import CustomInput from "../shared/CustomInput";
 import CustomButton from "../shared/CustomButton";
 import { UserAuth } from "../../context/AuthContext";

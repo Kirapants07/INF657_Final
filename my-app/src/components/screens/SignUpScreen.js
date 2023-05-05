@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, Image, useWindowDimensions } from 'react-native';
 import React, { useState } from 'react';
-import defaultUser from "../../images/defaultUser.jpg";
+import defaultUser from "../../../images/defaultUser.jpg";
 import CustomInput from '../shared/CustomInput';
 import CustomButton from '../shared/CustomButton';
 import { UserAuth } from '../../context/AuthContext';

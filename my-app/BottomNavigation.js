@@ -1,8 +1,8 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import ShoppingList from "../components/ShoppingList";
-import ProfilePage from "../components/screens/ProfilePage";
-import SignInScreen from "../components/screens/SignInScreen";
+import ShoppingList from "./src/components/ShoppingList";
+import ProfilePage from "./src/components/screens/ProfilePage";
+import SignInScreen from "./src/components/screens/SignInScreen";
 
 
 const Tab = createBottomTabNavigator();
