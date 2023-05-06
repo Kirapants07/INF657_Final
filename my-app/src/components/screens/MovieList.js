@@ -31,12 +31,15 @@ import CustomInput from "../shared/CustomInput";
                     const response =  await fetch(`https://www.omdbapi.com/?s=${search}&apikey=${API_KEY}`);
                     let movieList = await response.json();
 
-                    movieList = movieList.Search.map((doc) => ({
-                        id: doc.imdbID,
-                        data: doc,
-                    }));
+                    //if results found, map and display
+                    if (movieList.Response == "True"){
 
-                    setMovieData(movieList);
+                        movieList = movieList.Search.map((doc) => ({
+                            id: doc.imdbID,
+                            data: doc,
+                        }));
+                        setMovieData(movieList);
+                    }
                 } catch (err) {
                     console.log(err);
                 }
