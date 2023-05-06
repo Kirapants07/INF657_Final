@@ -1,12 +1,16 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   Text,
   StyleSheet,
   View,
   Image,
   TouchableHighlight,
+  TouchableWithoutFeedback,
 } from "react-native";
 import Swipeable from "react-native-gesture-handler/Swipeable";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import FavoritesContext from "../context/FavoritesContext";
+
 
 //Child of ItemList
 //A Single item in the Movie list
@@ -15,8 +19,9 @@ export default function ListItem({
   renderRightActions,
   renderLeftActions,
 }) {
+  
+  const {FavoriteList, deleteItem, addFavItem } = useContext(FavoritesContext);
   const [checked, setChecked] = useState(false); //useState for checkbox. Initial is false
-
   const handleChange = () => {
     setChecked(!checked); //toggle between true and false
   };
@@ -27,15 +32,16 @@ export default function ListItem({
       <TouchableHighlight underlayColor={"#lightgrey"}>
         <>
           <View style={styles.mainContainer}>
-            <Image style={styles.image} source={data.data.Poster}/>
+            <Image style={styles.image} source={data.Poster}/>
             <Text style={styles.title}>
-            {/* <input 
-              type="checkbox"
-              checked={checked}
-              onChange={handleChange}
-              style={styles.checkBox}
-            /> */}
-            {data.data.Title}
+            <TouchableWithoutFeedback onPress={() => addFavItem(data)}>
+              <MaterialCommunityIcons
+                name="heart-outline"
+                size={40}
+                color="pink"
+              />
+            </TouchableWithoutFeedback>
+            {data.Title}
             {}
             </Text>
           </View>

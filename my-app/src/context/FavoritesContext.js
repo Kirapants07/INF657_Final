@@ -26,12 +26,17 @@ export const FavoritesProvider = ({children}) => {
     const fetchItem = async () => {
         try { 
             const FavoriteListRef = collection(db, "Movielist");
-            const q = query(FavoriteListRef, orderBy("title"), limit(20));
+            const q = query(FavoriteListRef, orderBy("Title"), limit(20));
             const querySnapShot = await getDocs(q);
             const favoriteList = querySnapShot.docs.map((doc) => ({
                 id: doc.id,
-                data: doc.data(),
+                imdbID: doc.data().imdbID,
+                Title: doc.data().Title,
+                Year: doc.data().Year,
+                Poster: doc.data().Poster,
+                
             }));
+            console.log(favoriteList);
             setFavoriteList(favoriteList);
         }
         catch (error) {
@@ -39,18 +44,21 @@ export const FavoritesProvider = ({children}) => {
         }
     };
     fetchItem();
-  }, []);
+  },[]);
 
   //Add Item
   const addFavItem = (newItem) => {
     try{
         const docRef = addDoc(collection (db, "Movielist"), newItem);
-        console.log("Document written: ", docRef.id);
+        console.log("Document written: " + docRef.id);
         setFavoriteList((previousFavoriteList) => [
           ...previousFavoriteList, 
           {
             id: docRef.id,
-            data: newItem
+            imdbID: newItem.imdbID,
+            Title: newItem.Title,
+            Year: newItem.Year,
+            Poster: newItem.Poster,
             },
         ]);
     }

@@ -30,22 +30,20 @@ export default function FavoritesList() {
         data={FavoriteList}
         keyExtractor={(FavoriteList) => FavoriteList.id}
         renderItem={({ item }) => (
-          <View>
-            <ListItem
-                data = {item}
-                renderRightActions={() => (
-                  <View style={styles.deleteContainer}>
-                    <TouchableWithoutFeedback onPress={() => deleteItem(item.id)}>
-                      <MaterialCommunityIcons
-                        name="trash-can"
-                        size={40}
-                        color="black"
-                      />
-                    </TouchableWithoutFeedback>
-                  </View>
-                )}
-              />
-          </View>
+        <ListItem
+            data = {item}
+            renderRightActions={() => (
+              <View style={styles.deleteContainer}>
+                <TouchableWithoutFeedback onPress={() => deleteItem(item.id)}>
+                  <MaterialCommunityIcons
+                    name="trash-can"
+                    size={40}
+                    color="black"
+                  />
+                </TouchableWithoutFeedback>
+              </View>
+            )}
+          />
         )}
       />
     </>

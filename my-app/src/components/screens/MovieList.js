@@ -36,7 +36,9 @@ import CustomInput from "../shared/CustomInput";
 
                         movieList = movieList.Search.map((doc) => ({
                             id: doc.imdbID,
-                            data: doc,
+                            Title: doc.Title,
+                            Year: doc.Year,
+                            Poster: doc.Poster,
                         }));
                         setMovieData(movieList);
                     }
@@ -63,17 +65,6 @@ import CustomInput from "../shared/CustomInput";
             <View>
               <ListItem
                   data = {item}
-                  renderRightActions={() => (
-                    <View style={styles.deleteContainer}>
-                      <TouchableWithoutFeedback onPress={() => deleteItem(item.imdbID)}>
-                        <MaterialCommunityIcons
-                          name="trash-can"
-                          size={40}
-                          color="black"
-                        />
-                      </TouchableWithoutFeedback>
-                    </View>
-                  )}
                 />
             </View>
           )}

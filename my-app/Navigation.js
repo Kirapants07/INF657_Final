@@ -37,15 +37,6 @@ function TabNavigator() {
         tabBarActiveTintColor: "#0693e3",
       }}
     >
-            <Tab.Screen
-        name="MovieData"
-        component={ItemList}
-        options={{
-          tabBarIcon: ({ size }) => (
-            <MaterialCommunityIcons name="home" color={"black"} size={size} />
-          ),
-        }}
-      />
       <Tab.Screen
         name="Movie List"
         component={MovieList}
