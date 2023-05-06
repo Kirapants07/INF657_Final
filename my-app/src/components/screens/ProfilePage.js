@@ -7,7 +7,7 @@ import {
   } from "react-native";
   import React, { useState } from "react";
   import { auth } from "../../firebase";
-  import defaultUser from "../../../images/defaultUser.jpg";
+  import defaultUser from "../../../assets/defaultUser.jpg";
 import CustomInput from "../shared/CustomInput";
 import CustomButton from "../shared/CustomButton";
 import { UserAuth } from "../../context/AuthContext";
@@ -49,7 +49,7 @@ export default function ProfilePage() {
           style={(styles.defaultUser, { height: height * 0.3 })}
           resizeMode="contain"
         />
-        <Text style={styles.title}>Profile Page</Text>
+        <Text style={styles.title}>Profile</Text>
         <CustomInput placeholder="Email" value={email} setValue={setEmail} />
         <CustomInput
           placeholder="User Name"
@@ -58,7 +58,6 @@ export default function ProfilePage() {
         />
         <CustomButton text="Edit Profile" onPress={onEdit} />
         <CustomButton text="Log Out" onPress={onLogOut} bgColor="#f5c542" />
-
       </View>
     );
   }

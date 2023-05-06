@@ -8,20 +8,13 @@ import { getFirestore } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  // apiKey: `"{process.env.REACT_APP_API_KEY}"`,
-  // apiKey: "AIzaSyAioIN3QmNjH6OPfX4sopA_kF7CbvHMDG8",
-  // authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-  // projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
-  // storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
-  // messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
-  // appId: process.env.REACT_APP_FIREBASE_API_APP_ID,
-
-  apiKey: "AIzaSyAioIN3QmNjH6OPfX4sopA_kF7CbvHMDG8",
-  authDomain: "inf657shoppinglist.firebaseapp.com",
-  projectId: "inf657shoppinglist",
-  storageBucket: "inf657shoppinglist.appspot.com",
-  messagingSenderId: "185750253990",
-  appId: "1:185750253990:web:c94deaa0e1216928091f67",
+  apiKey: "AIzaSyBhCqWFBNP04HDR1DZiGJ5tkpcax5GDJGY",
+  authDomain: "inf657-movie-list.firebaseapp.com",
+  databaseURL: "https://inf657-movie-list-default-rtdb.firebaseio.com",
+  projectId: "inf657-movie-list",
+  storageBucket: "inf657-movie-list.appspot.com",
+  messagingSenderId: "332944014415",
+  appId: "1:332944014415:web:c5ab14b3e44db5e961fe3a"
 };
 
 // Initialize Firebase

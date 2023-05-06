@@ -6,11 +6,11 @@ import {
   SafeAreaView,
   Text,
 } from "react-native";
-import ListItem from "./ListItem"; //single item
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useContext } from "react";
-import MovieListContext from "../context/MovieListContext";
 import Constants from 'expo-constants';
+import MovieListContext from "../../context/MovieListContext";
+import ListItem from "../ListItem";
 
 //Child of MovieList
 //Parent of ListItem
@@ -22,7 +22,7 @@ export default function ItemList() {
   return (
   <SafeAreaView style={styles.outerscreen}>
     <Text style={styles.center}>
-        <h1>Movie List</h1>
+        <h1>Favorites List</h1>
     </Text>
   <>
      <FlatList

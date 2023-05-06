@@ -2,10 +2,10 @@ import React, { useContext, useState } from 'react';
 import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import CustomInput from './shared/CustomInput';
 import CustomButton from './shared/CustomButton';
-import ShoppingListContext from '../context/ShoppingListContext';
+import MovieListContext from '../context/MovieListContext';
 
 export default function AddItem() {
-  const {addItem} = useContext(ShoppingListContext);
+  const {addItem} = useContext(MovieListContext);
 
     const [title,setTitle] = useState('');
     const [description,setDescription] = useState('');

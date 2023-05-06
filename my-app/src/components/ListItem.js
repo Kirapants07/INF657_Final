@@ -9,7 +9,7 @@ import {
 import Swipeable from "react-native-gesture-handler/Swipeable";
 
 //Child of ItemList
-//A Single item in the shopping list
+//A Single item in the Movie list
 export default function ListItem({
   data,
   renderRightActions,
@@ -27,19 +27,16 @@ export default function ListItem({
       <TouchableHighlight underlayColor={"#lightgrey"}>
         <>
           <View style={styles.mainContainer}>
-            <Image style={styles.image} source={data.image} />
+            <Image style={styles.image} source={{ uri: data.image }} />
             <Text style={styles.title}>
-            <input 
+            {/* <input 
               type="checkbox"
               checked={checked}
               onChange={handleChange}
               style={styles.checkBox}
-            />
+            /> */}
             {data.title}
             </Text>
-            <Text style={styles.description}>{data.description}</Text>
-            <Text style={styles.description}>Price: ${data.price}.00</Text>
-            <Text style={styles.description}>Quantity: {data.quantity}</Text>
           </View>
         </>
       </TouchableHighlight>
@@ -50,7 +47,7 @@ export default function ListItem({
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
-    backgroundColor: "#4fa6d1",
+    backgroundColor: "white",
     padding: 25,
     paddingTop: 50,
     marginBottom:5,

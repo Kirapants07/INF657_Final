@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, Image, useWindowDimensions } from 'react-native';
 import React, { useState } from 'react';
-import defaultUser from "../../../images/defaultUser.jpg";
+import defaultUser from "../../../assets/defaultUser.jpg";
 import CustomInput from '../shared/CustomInput';
 import CustomButton from '../shared/CustomButton';
 import { UserAuth } from '../../context/AuthContext';
@@ -27,11 +27,11 @@ export default function SignUpScreen() {
             await createUser(email, password).then((userCredential) => {
                 const user = userCredential.user;
                 console.log(user);
-                navigation.navigate("ShoppingList");
+                navigation.navigate("MovieList");
             })
         }
         catch (error) {
-            console.log(error);
+            alert("Account creation failed: " + error.message);
         }
         //reset input fields/states
         setUsername("");

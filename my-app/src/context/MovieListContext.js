@@ -13,11 +13,11 @@ import {
 import { db } from "../firebase";
 
 
-const ShoppingListContext = createContext();
+const MovieListContext = createContext();
 
-export const ShoppingListProvider = ({children}) => {
-  const [shoppingList, setShoppingList] = useState([]);
-  const [shoppingListEdit, setShoppingListEdit] = useState({
+export const MovieListProvider = ({children}) => {
+  const [MovieList, setMovieList] = useState({});
+  const [MovieListEdit, setMovieListEdit] = useState({
     item: {},
     edit: false,
   });
@@ -25,29 +25,29 @@ export const ShoppingListProvider = ({children}) => {
   useEffect (() => {
     const fetchItem = async () => {
         try { 
-            const shoppingListRef = collection(db, "shoppinglist");
-            const q = query(shoppingListRef, orderBy("title"), limit(20));
+            const MovieListRef = collection(db, "Movielist");
+            const q = query(MovieListRef, orderBy("title"), limit(20));
             const querySnapShot = await getDocs(q);
-            const shoppingList = querySnapShot.docs.map((doc) => ({
+            const MovieList = querySnapShot.docs.map((doc) => ({
                 id: doc.id,
                 data: doc.data(),
             }));
-            setShoppingList(shoppingList);
+            setMovieList(MovieList);
         }
         catch (error) {
             console.log(error);
         }
     };
     fetchItem();
-  });
+  }, );
 
   //Add Item
   const addItem = (newItem) => {
     try{
-        const docRef = addDoc(collection (db, "shoppinglist"), newItem);
+        const docRef = addDoc(collection (db, "Movielist"), newItem);
         console.log("Document written: ", docRef.id);
-        setShoppingList((previousShoppingList) => [
-          ...previousShoppingList, 
+        setMovieList((previousMovieList) => [
+          ...previousMovieList, 
           {
             id: docRef.id,
             data: newItem
@@ -61,15 +61,15 @@ export const ShoppingListProvider = ({children}) => {
   
   //edit Item
   const editItem = (item) => {
-    setShoppingListEdit({ item, edit: true });
+    setMovieListEdit({ item, edit: true });
   };
 
   //Update Item
   const updateItem = async (id, updItem) => {
     try {
-      const docRef = doc(db, "shoppingList", id);
+      const docRef = doc(db, "MovieList", id);
       await updateDoc(docRef, updItem);
-      const updatedShoppingList = shoppingList.map((item) => {
+      const updatedMovieList = MovieList.map((item) => {
         if (item.id === id) {
           return {
             id,
@@ -82,7 +82,7 @@ export const ShoppingListProvider = ({children}) => {
           return item;
         }
       });
-      setShoppingList(updatedShoppingList);
+      setMovieList(updatedMovieList);
     } catch (error) {
       console.log(error);
     }
@@ -92,9 +92,9 @@ export const ShoppingListProvider = ({children}) => {
   const deleteItem = (id) => {
     if (window.confirm("Deleted Items cannot be recovered. Do you want to delete?")) {
         try {
-            const docRef = doc(db, "shoppinglist", id);
+            const docRef = doc(db, "Movielist", id);
             deleteDoc(docRef);
-            setShoppingList(shoppingList);
+            setMovieList(MovieList);
         }
         catch (error) {
             console.log(error);
@@ -103,11 +103,11 @@ export const ShoppingListProvider = ({children}) => {
   };
 
     return (
-        <ShoppingListContext.Provider value = {{shoppingList, addItem, editItem, updateItem, deleteItem, shoppingListEdit}}>
+        <MovieListContext.Provider value = {{MovieList, addItem, editItem, updateItem, deleteItem, MovieListEdit}}>
             {children}
-        </ShoppingListContext.Provider>
+        </MovieListContext.Provider>
 
   );
 };
 
-export default ShoppingListContext;
+export default MovieListContext;
