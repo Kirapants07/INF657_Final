@@ -58,6 +58,8 @@ const styles = StyleSheet.create({
     paddingTop: Constants.StatusBarHeight,
     flexDirection: "column",
     flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
   },
   screen: {
     flex: 1,

@@ -12,50 +12,45 @@ import {
   // import MovieListContext from "../../context/MovieListContext";
   import ListItem from "../ListItem";  //single item
   import FavoritesContext from "../../context/FavoritesContext";
+import CustomInput from "../shared/CustomInput";
   
   //Parent of ListItem
   //displays a list of items
   export default function MovieList() {
     
     // const {FavoriteList, deleteItem} = useContext(FavoritesContext);
-
+    const [search, setSearch] = useState('');
     const [movieData, setMovieData] = useState([]);
     const API_KEY= 'e9dc20d0';
-    let searchTitle = "Jaws";
 
+    //fetch movie results
     useEffect(() => {
         const fetchMovies = async () =>{
+            if (search !== "") {
                 try{
-                    const response =  await fetch(`https://www.omdbapi.com/?s=${searchTitle}&apikey=${API_KEY}`);
+                    const response =  await fetch(`https://www.omdbapi.com/?s=${search}&apikey=${API_KEY}`);
                     let movieList = await response.json();
-                    console.log(movieList);
-                    // console.log(movieList.Title);
-                    // console.log(movieList.Rated);
-                    // console.log(movieList.Year);
-                    // console.log(movieList.Plot);
-                    // console.log(movieList.Poster);
 
                     movieList = movieList.Search.map((doc) => ({
                         id: doc.imdbID,
                         data: doc,
                     }));
 
-                    console.log(movieList);
-
                     setMovieData(movieList);
-                    
                 } catch (err) {
                     console.log(err);
                 }
               }
+            }
             fetchMovies();
-        }, [] );
+        }, [search] );
 
   
     return (
     <SafeAreaView style={styles.outerscreen}>
       <Text style={styles.center}>
           <h1>Movie List</h1>
+          <CustomInput placeholder="Search Titles" value={search} setValue={setSearch} />
       </Text>
     <>
        <FlatList
@@ -90,6 +85,8 @@ import {
       paddingTop: Constants.StatusBarHeight,
       flexDirection: "column",
       flex: 1,
+      justifyContent: "center",
+      alignItems: "center",
     },
     screen: {
       flex: 1,
@@ -150,6 +147,7 @@ import {
     },
       center: {
         textAlign: "center",
+        width: 400,
     },
   });
   
