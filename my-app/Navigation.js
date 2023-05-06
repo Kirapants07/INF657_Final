@@ -4,13 +4,15 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { UserAuth } from "./src/context/AuthContext";
-import { MovieListProvider } from './src/context/MovieListContext';
 import SignInScreen from './src/components/screens/SignInScreen';
 import SignUpScreen from './src/components/screens/SignUpScreen';
 import ForgotPasswordScreen from './src/components/screens/ForgotPasswordScreen';
 import ProfilePage from './src/components/screens/ProfilePage';
 import FavoritesScreen from './src/components/screens/FavoritesScreen';
 import ItemList from './src/components/ItemList';
+import { FavoritesProvider } from './src/context/FavoritesContext';
+import MovieDetailsScreen from './src/components/screens/MovieDetailsScreen';
+import MovieList from './src/components/screens/MovieList';
 
 const Stack = createStackNavigator(); //stack naviagator
 const AuthStack = createStackNavigator(); //auth stack pages
@@ -20,7 +22,8 @@ const Drawer = createDrawerNavigator(); ///Drawernaviagator
 function HomeStack() {
   return (
       <Stack.Navigator screenOptions={{headerShown: false}}>
-          <Stack.Screen name ="Movie List" component={ItemList} />
+          <Stack.Screen name ="Movie List" component={MovieList} />
+          <Stack.Screen name ="Movie Details" component={MovieDetailsScreen} />
       </Stack.Navigator>
   );
 }
@@ -34,9 +37,18 @@ function TabNavigator() {
         tabBarActiveTintColor: "#0693e3",
       }}
     >
+            <Tab.Screen
+        name="MovieData"
+        component={ItemList}
+        options={{
+          tabBarIcon: ({ size }) => (
+            <MaterialCommunityIcons name="home" color={"black"} size={size} />
+          ),
+        }}
+      />
       <Tab.Screen
         name="Movie List"
-        component={ItemList}
+        component={MovieList}
         options={{
           tabBarIcon: ({ size }) => (
             <MaterialCommunityIcons name="home" color={"black"} size={size} />
@@ -50,19 +62,6 @@ function TabNavigator() {
           tabBarIcon: ({ size }) => (
             <MaterialCommunityIcons
               name="heart"
-              color={"black"}
-              size={size}
-            />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Log In"
-        component={SignInScreen}
-        options={{
-          tabBarIcon: ({ size }) => (
-            <MaterialCommunityIcons
-              name="login"
               color={"black"}
               size={size}
             />
@@ -83,12 +82,12 @@ const AuthStackScreen = () => (
 
 function DrawerNavigator() {
   return (
-    <MovieListProvider>
+    <FavoritesProvider>
       <Drawer.Navigator>
-        <Drawer.Screen name="Movie List" component={TabNavigator} />
+        <Drawer.Screen name="Home" component={TabNavigator} />
         <Drawer.Screen name="Profile" component={ProfilePage} />
       </Drawer.Navigator>
-    </MovieListProvider>
+    </FavoritesProvider>
   );
 }
 

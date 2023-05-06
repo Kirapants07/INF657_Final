@@ -27,7 +27,7 @@ export default function ListItem({
       <TouchableHighlight underlayColor={"#lightgrey"}>
         <>
           <View style={styles.mainContainer}>
-            <Image style={styles.image} source={{ uri: data.image }} />
+            <Image style={styles.image} source={data.data.Poster}/>
             <Text style={styles.title}>
             {/* <input 
               type="checkbox"
@@ -35,7 +35,8 @@ export default function ListItem({
               onChange={handleChange}
               style={styles.checkBox}
             /> */}
-            {data.title}
+            {data.data.Title}
+            {}
             </Text>
           </View>
         </>
@@ -53,9 +54,8 @@ const styles = StyleSheet.create({
     marginBottom:5,
   },
   image: {
-    height: 70,
-    width: 70,
-    borderRadius: 35,
+    height: 222,
+    width: 150,
     marginRight: 10,
     padding: 20,
   },

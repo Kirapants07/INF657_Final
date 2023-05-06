@@ -28,11 +28,11 @@ export const FavoritesProvider = ({children}) => {
             const FavoriteListRef = collection(db, "Movielist");
             const q = query(FavoriteListRef, orderBy("title"), limit(20));
             const querySnapShot = await getDocs(q);
-            const FavoriteList = querySnapShot.docs.map((doc) => ({
+            const favoriteList = querySnapShot.docs.map((doc) => ({
                 id: doc.id,
                 data: doc.data(),
             }));
-            setFavoriteList(FavoriteList);
+            setFavoriteList(favoriteList);
         }
         catch (error) {
             console.log(error);
@@ -103,7 +103,7 @@ export const FavoritesProvider = ({children}) => {
   };
 
     return (
-        <FavoritesContext.Provider value = {{FavoriteList, addFavItem, editFavItem, updateFavItem, deleteFavItem, MovieListEdit}}>
+        <FavoritesContext.Provider value = {{FavoriteList, addFavItem, editFavItem, updateFavItem, deleteFavItem, FavoriteListEdit}}>
             {children}
         </FavoritesContext.Provider>
 

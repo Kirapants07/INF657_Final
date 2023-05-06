@@ -5,19 +5,33 @@ import {
   TouchableWithoutFeedback,
   SafeAreaView,
   Text,
+  TouchableOpacity,
+  Image,
 } from "react-native";
 import ListItem from "./ListItem"; //single item
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { useContext } from "react";
-import MovieListContext from "../context/MovieListContext";
 import Constants from 'expo-constants';
+import { movies } from "../data/Movies";
 
 //Child of MovieList
 //Parent of ListItem
 //displays a list of items
 export default function ItemList() {
   
-  const {MovieList, deleteItem} = useContext(MovieListContext);
+  const navigateToMovieDetails = (movie) => {
+    navigation.navigate("Movie Details", { movie });
+  };
+
+  const renderItem = ({ item }) => (
+    <TouchableOpacity onPress={() => navigateToMovieDetails(item)}>
+      <View style={styles.cardContainer}>
+        <Image source={item.image} style={styles.movieImage} />
+        <View style={styles.movieDetails}>
+          <Text style={styles.movieTitle}>{item.title}</Text>
+          <Text style={styles.movieDescription}>{item.description}</Text>
+        </View>
+      </View>
+    </TouchableOpacity>
+  );
 
   return (
   <SafeAreaView style={styles.outerscreen}>
@@ -26,23 +40,16 @@ export default function ItemList() {
     </Text>
   <>
      <FlatList
-        data={MovieList}
-        keyExtractor={(MovieList) => MovieList.id}
+        data={movies}
+        keyExtractor={(movie) => movie.id}
         renderItem={({ item }) => (
-          <ListItem
-            data = {item.data}
-            renderRightActions={() => (
-              <View style={styles.deleteContainer}>
-                <TouchableWithoutFeedback onPress={() => deleteItem(item.id)}>
-                  <MaterialCommunityIcons
-                    name="trash-can"
-                    size={40}
-                    color="black"
+          <TouchableOpacity onPress={() => navigateToMovieDetails(item)}>
+              <View>
+                <ListItem
+                    data = {item}
                   />
-                </TouchableWithoutFeedback>
               </View>
-            )}
-          />
+          </TouchableOpacity>
         )}
       />
     </>

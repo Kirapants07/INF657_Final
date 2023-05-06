@@ -9,15 +9,16 @@ import {
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useContext } from "react";
 import Constants from 'expo-constants';
-import MovieListContext from "../../context/MovieListContext";
-import ListItem from "../ListItem";
+// import MovieListContext from "../../context/MovieListContext";
+import ListItem from "../ListItem";  //single item
+import FavoritesContext from "../../context/FavoritesContext";
 
 //Child of MovieList
 //Parent of ListItem
 //displays a list of items
-export default function ItemList() {
+export default function FavoritesList() {
   
-  const {MovieList, deleteItem} = useContext(MovieListContext);
+  const {FavoriteList, deleteItem} = useContext(FavoritesContext);
 
   return (
   <SafeAreaView style={styles.outerscreen}>
@@ -26,23 +27,25 @@ export default function ItemList() {
     </Text>
   <>
      <FlatList
-        data={MovieList}
-        keyExtractor={(MovieList) => MovieList.id}
+        data={FavoriteList}
+        keyExtractor={(FavoriteList) => FavoriteList.id}
         renderItem={({ item }) => (
-          <ListItem
-            data = {item.data}
-            renderRightActions={() => (
-              <View style={styles.deleteContainer}>
-                <TouchableWithoutFeedback onPress={() => deleteItem(item.id)}>
-                  <MaterialCommunityIcons
-                    name="trash-can"
-                    size={40}
-                    color="black"
-                  />
-                </TouchableWithoutFeedback>
-              </View>
-            )}
-          />
+          <View>
+            <ListItem
+                data = {item}
+                renderRightActions={() => (
+                  <View style={styles.deleteContainer}>
+                    <TouchableWithoutFeedback onPress={() => deleteItem(item.id)}>
+                      <MaterialCommunityIcons
+                        name="trash-can"
+                        size={40}
+                        color="black"
+                      />
+                    </TouchableWithoutFeedback>
+                  </View>
+                )}
+              />
+          </View>
         )}
       />
     </>
