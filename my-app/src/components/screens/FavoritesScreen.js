@@ -18,7 +18,7 @@ import FavoritesContext from "../../context/FavoritesContext";
 //displays a list of items
 export default function FavoritesList() {
   
-  const {FavoriteList, deleteItem} = useContext(FavoritesContext);
+  const {FavoriteList, deleteFavItem} = useContext(FavoritesContext);
 
   return (
   <SafeAreaView style={styles.outerscreen}>
@@ -34,7 +34,7 @@ export default function FavoritesList() {
             data = {item}
             renderRightActions={() => (
               <View style={styles.deleteContainer}>
-                <TouchableWithoutFeedback onPress={() => deleteItem(item.id)}>
+                <TouchableWithoutFeedback onPress={() => deleteFavItem(item.id)}>
                   <MaterialCommunityIcons
                     name="trash-can"
                     size={40}

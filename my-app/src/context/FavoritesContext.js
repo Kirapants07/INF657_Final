@@ -17,10 +17,10 @@ const FavoritesContext = createContext();
 
 export const FavoritesProvider = ({children}) => {
   const [FavoriteList, setFavoriteList] = useState([]);
-  const [FavoriteListEdit, setFavoriteListEdit] = useState({
-    item: {},
-    edit: false,
-  });
+  // const [FavoriteListEdit, setFavoriteListEdit] = useState({
+  //   item: {},
+  //   edit: false,
+  // });
 
   useEffect (() => {
     const fetchItem = async () => {
@@ -67,51 +67,49 @@ export const FavoritesProvider = ({children}) => {
     }
   };
   
-  //edit Item
-  const editFavItem = (item) => {
-    setFavoriteListEdit({ item, edit: true });
-  };
+  // //edit Item
+  // const editFavItem = (item) => {
+  //   setFavoriteListEdit({ item, edit: true });
+  // };
 
-  //Update Item
-  const updateFavItem = async (id, updItem) => {
-    try {
-      const docRef = doc(db, "MovieList", id);
-      await updateDoc(docRef, updItem);
-      const updatedFavoriteList = FavoriteList.map((item) => {
-        if (item.id === id) {
-          return {
-            id,
-            data: {
-              ...item.data,
-              ...updItem,
-            },
-          };
-        } else {
-          return item;
-        }
-      });
-      setFavoriteList(updatedFavoriteList);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // //Update Item
+  // const updateFavItem = async (id, updItem) => {
+  //   try {
+  //     const docRef = doc(db, "MovieList", id);
+  //     await updateDoc(docRef, updItem);
+  //     const updatedFavoriteList = FavoriteList.map((item) => {
+  //       if (item.id === id) {
+  //         return {
+  //           id,
+  //           data: {
+  //             ...item.data,
+  //             ...updItem,
+  //           },
+  //         };
+  //       } else {
+  //         return item;
+  //       }
+  //     });
+  //     setFavoriteList(updatedFavoriteList);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   //Delete Item
-  const deleteFavItem = (id) => {
-    if (window.confirm("Deleted Items cannot be recovered. Do you want to delete?")) {
+  const deleteFavItem = async (id) => {
         try {
             const docRef = doc(db, "Movielist", id);
-            deleteDoc(docRef);
-            setFavoriteList(FavoriteList);
+            await deleteDoc(docRef);
+            setFavoriteList(FavoriteList.filter((movie) => movie.id !== id));
         }
         catch (error) {
             console.log(error);
         }
-    }
   };
 
     return (
-        <FavoritesContext.Provider value = {{FavoriteList, addFavItem, editFavItem, updateFavItem, deleteFavItem, FavoriteListEdit}}>
+        <FavoritesContext.Provider value = {{FavoriteList, addFavItem, deleteFavItem}}>
             {children}
         </FavoritesContext.Provider>
 
