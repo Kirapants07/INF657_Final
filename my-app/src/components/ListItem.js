@@ -27,7 +27,6 @@ export default function ListItem({
 
   return (
     <Swipeable renderRightActions={renderRightActions} >
-      <TouchableHighlight underlayColor={"#lightgrey"}>
         <>
           <View style={styles.mainContainer}>
             <Image style={styles.image} source={data.Poster}/>
@@ -37,7 +36,6 @@ export default function ListItem({
             </Text>
           </View>
         </>
-      </TouchableHighlight>
     </Swipeable>
   );
 }

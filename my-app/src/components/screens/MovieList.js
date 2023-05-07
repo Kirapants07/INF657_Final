@@ -6,6 +6,8 @@ import {
     SafeAreaView,
     Text,
     TouchableOpacity,
+    TouchableHighlight,
+    Pressable,
   } from "react-native";
   import { MaterialCommunityIcons } from "@expo/vector-icons";
   import { useContext, useEffect, useState } from "react";
@@ -57,7 +59,17 @@ import CustomButton from "../shared/CustomButton";
             fetchMovies();
         }, [search] );
 
-  
+
+{/* 
+                <TouchableWithoutFeedback onPress={() => addFavItem(item)}>
+                    <MaterialCommunityIcons
+                        name="heart-outline"
+                        size={80}
+                        color="red"
+                        style={styles.heart}
+                    />
+                </TouchableWithoutFeedback> */}
+
     return (
     <SafeAreaView style={styles.outerscreen}>
       <Text style={styles.center}>
@@ -70,17 +82,18 @@ import CustomButton from "../shared/CustomButton";
           keyExtractor={(movieData) => movieData.imdbID}
           renderItem={({ item }) => (
             <View >
-                <CustomButton text="details" 
-                  onPress={() => {
-                    navigation.navigate('MovieDetails', {
-                      itemId: 86,
-                      otherParam: 'anything you want here',
-                    });
-                  }}
-                />
-                    <ListItem
-                        data = {item}
-                    />
+                <Pressable onPress={() => {
+                  navigation.navigate('MovieDetails', {
+                    itemId: 86,
+                    otherParam: 'anything you want here',
+                  });
+                }}>
+                    <View>
+                      <ListItem
+                          data = {item}
+                      />
+                    </View>
+                </Pressable>
                 <TouchableWithoutFeedback onPress={() => addFavItem(item)}>
                     <MaterialCommunityIcons
                         name="heart-outline"
