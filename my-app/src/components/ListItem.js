@@ -34,13 +34,6 @@ export default function ListItem({
           <View style={styles.mainContainer}>
             <Image style={styles.image} source={data.Poster}/>
             <Text style={styles.title}>
-            <TouchableWithoutFeedback onPress={() => addFavItem(data)}>
-              <MaterialCommunityIcons
-                name="heart-outline"
-                size={40}
-                color="pink"
-              />
-            </TouchableWithoutFeedback>
             {data.Title}
             {}
             </Text>
@@ -58,13 +51,13 @@ const styles = StyleSheet.create({
     padding: 25,
     paddingTop: 50,
     marginBottom:5,
-    width: 400,
+    width: 450,
     justifyContent: "center",
     alignItems: "center",
   },
   image: {
-    height: 222,
-    width: 150,
+    height: 444,
+    width: 300,
     marginRight: 10,
     padding: 20,
   },

@@ -18,7 +18,7 @@ import CustomInput from "../shared/CustomInput";
   //displays a list of items
   export default function MovieList() {
     
-    // const {FavoriteList, deleteItem} = useContext(FavoritesContext);
+    const {FavoriteList, addFavItem} = useContext(FavoritesContext);
     const [search, setSearch] = useState('');
     const [movieData, setMovieData] = useState([]);
     const API_KEY= 'e9dc20d0';
@@ -66,6 +66,14 @@ import CustomInput from "../shared/CustomInput";
               <ListItem
                   data = {item}
                 />
+                <TouchableWithoutFeedback onPress={() => addFavItem(item)}>
+                    <MaterialCommunityIcons
+                        name="heart-outline"
+                        size={100}
+                        color="red"
+                        style={styles.heart}
+                    />
+                </TouchableWithoutFeedback>
             </View>
           )}
         />
@@ -142,6 +150,11 @@ import CustomInput from "../shared/CustomInput";
       center: {
         textAlign: "center",
         width: 400,
+    },
+    heart: {
+        position: "relative",
+        top: -560, 
+        right: -20,   
     },
   });
   
