@@ -6,8 +6,6 @@ import {
     SafeAreaView,
     Text,
     TouchableOpacity,
-    TouchableHighlight,
-    Pressable,
   } from "react-native";
   import { MaterialCommunityIcons } from "@expo/vector-icons";
   import { useContext, useEffect, useState } from "react";
@@ -15,7 +13,6 @@ import {
   import ListItem from "../ListItem";  //single item
   import FavoritesContext from "../../context/FavoritesContext";
 import CustomInput from "../shared/CustomInput";
-import CustomButton from "../shared/CustomButton";
 
   
   //Parent of ListItem
@@ -25,12 +22,6 @@ import CustomButton from "../shared/CustomButton";
     const [search, setSearch] = useState('');
     const [movieData, setMovieData] = useState([]);
     const API_KEY= 'e9dc20d0';
-
-    
-    // const navigateToMovieDetails = (movie) => {
-    //     navigation.navigate("MovieDetails", { move: movie, API_KEY: API_KEY });
-    //   };
-    
 
     //fetch movie results
     useEffect(() => {
@@ -58,17 +49,13 @@ import CustomButton from "../shared/CustomButton";
             }
             fetchMovies();
         }, [search] );
-
-
-{/* 
-                <TouchableWithoutFeedback onPress={() => addFavItem(item)}>
-                    <MaterialCommunityIcons
-                        name="heart-outline"
-                        size={80}
-                        color="red"
-                        style={styles.heart}
-                    />
-                </TouchableWithoutFeedback> */}
+        
+      const navigateToMovieDetails = (item) => {
+        while (item  === undefined){
+          console.log("undefined");
+        }
+        navigation.navigate("MovieDetails", { item, API_KEY });
+      };
 
     return (
     <SafeAreaView style={styles.outerscreen}>
@@ -82,19 +69,12 @@ import CustomButton from "../shared/CustomButton";
           keyExtractor={(movieData) => movieData.imdbID}
           renderItem={({ item }) => (
             <View >
-                <Pressable onPress={() => {
-                  navigation.navigate('MovieDetails', {
-                    itemId: 86,
-                    otherParam: 'anything you want here',
-                  });
-                }}>
-                    <View>
+              <TouchableOpacity onPress={() => navigateToMovieDetails(item)}>
                       <ListItem
                           data = {item}
                       />
-                    </View>
-                </Pressable>
-                <TouchableWithoutFeedback onPress={() => addFavItem(item)}>
+                </TouchableOpacity>
+                <TouchableWithoutFeedback onPress={() => {alert("movie added to favorites"); addFavItem(item);}}>
                     <MaterialCommunityIcons
                         name="heart-outline"
                         size={80}
@@ -183,8 +163,7 @@ import CustomButton from "../shared/CustomButton";
     },
     heart: {
         position: "relative",
-        top: "-95%", 
-        left: "-2%", 
+        top: "-97%", 
         margin: 0,
         padding: 0,  
         width: 0,

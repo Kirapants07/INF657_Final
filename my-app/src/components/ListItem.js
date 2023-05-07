@@ -1,15 +1,11 @@
-import React, { useContext, useState } from "react";
+import React from "react";
 import {
   Text,
   StyleSheet,
   View,
   Image,
-  TouchableHighlight,
-  TouchableWithoutFeedback,
 } from "react-native";
 import Swipeable from "react-native-gesture-handler/Swipeable";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-import FavoritesContext from "../context/FavoritesContext";
 
 
 //Child of ItemList
@@ -18,13 +14,6 @@ export default function ListItem({
   data,
   renderRightActions,
 }) {
-  
-  const {FavoriteList, deleteItem, addFavItem } = useContext(FavoritesContext);
-  const [checked, setChecked] = useState(false); //useState for checkbox. Initial is false
-  const handleChange = () => {
-    setChecked(!checked); //toggle between true and false
-  };
-
   return (
     <Swipeable renderRightActions={renderRightActions} >
         <>
@@ -32,7 +21,6 @@ export default function ListItem({
             <Image style={styles.image} source={data.Poster}/>
             <Text style={styles.title}>
             {data.Title}
-            {}
             </Text>
           </View>
         </>

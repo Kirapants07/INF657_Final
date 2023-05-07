@@ -4,32 +4,23 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import FavoritesContext from "../../context/FavoritesContext";
 
 
-const MovieDetailsScreen = ({movieID, API_KEY}) => {
+const MovieDetailsScreen = ({navigation, route}) => {
 
   // const {FavoriteList, addFavItem} = useContext(FavoritesContext);
   const [movieDetails, setMovieDetails] = useState([]);
 
+  const { item, API_KEY } = route.params;
 
   // fetch movie results
   useEffect(() => {
     const fetchMovies = async () =>{
             try{
-                // const response =  await fetch(`https://www.omdbapi.com/?i=${movieID}&apikey=${API_KEY}`);
-                const response =  await fetch(`https://www.omdbapi.com/?i=tt1646971&apikey=e9dc20d0`);
+                const response =  await fetch(`https://www.omdbapi.com/?i=${item.imdbID}&apikey=${API_KEY}`);
                 let movieList = await response.json();
 
                 //if results found, map and display
                 if (movieList.Response == "True"){
-
-                    // movieList = movieList.Search.map((doc) => ({
-                    //     imdbID: doc.imdbID,
-                    //     Title: doc.Title,
-                    //     Year: doc.Year,
-                    //     Poster: doc.Poster,
-                    // }));
                     setMovieDetails(movieList);
-                    // console.log(API_KEY);
-                    console.log(movieID);
                 }
             } catch (err) {
                 console.log(err);
@@ -46,7 +37,6 @@ const MovieDetailsScreen = ({movieID, API_KEY}) => {
           <Image style={styles.image} source={movieDetails.Poster}/>
         </View>
         <View style={styles.detailsContainer}>
-          <Text>movieID: {movieID}</Text>
           <Text style={styles.title}>{movieDetails.Title} ({movieDetails.Year})</Text>
           <Text style={styles.details}>{movieDetails.Rated}     {movieDetails.Runtime}    {movieDetails.Language}      {movieDetails.imdbRating}/10</Text>
           <Text style={styles.Plot}>{movieDetails.Plot}</Text>

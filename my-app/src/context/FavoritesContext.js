@@ -61,7 +61,6 @@ export const FavoritesProvider = ({children}) => {
             Title: newItem.Title,
             Year: newItem.Year,
             Poster: newItem.Poster,
-            // user: user.uid,
             },
         ]);
     }
