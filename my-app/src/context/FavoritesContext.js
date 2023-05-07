@@ -1,4 +1,4 @@
-import { useState, useEffect, createContext } from "react";
+import { useState, useEffect, createContext, useContext } from "react";
 import {
   addDoc,
   collection,
@@ -11,11 +11,15 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import { db } from "../firebase";
+import { UserAuth } from "./AuthContext";
 
 
 const FavoritesContext = createContext();
 
 export const FavoritesProvider = ({children}) => {
+
+  const {user } = UserAuth();
+
   const [FavoriteList, setFavoriteList] = useState([]);
   // const [FavoriteListEdit, setFavoriteListEdit] = useState({
   //   item: {},
@@ -34,7 +38,6 @@ export const FavoritesProvider = ({children}) => {
                 Title: doc.data().Title,
                 Year: doc.data().Year,
                 Poster: doc.data().Poster,
-                
             }));
             console.log(favoriteList);
             setFavoriteList(favoriteList);
@@ -59,6 +62,7 @@ export const FavoritesProvider = ({children}) => {
             Title: newItem.Title,
             Year: newItem.Year,
             Poster: newItem.Poster,
+            // user: user.uid,
             },
         ]);
     }

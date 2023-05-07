@@ -23,7 +23,7 @@ import {
         email,
         displayName: name,
       });
-        console.log(auth.currentUser.displayName, auth.currentUser.email);
+        // console.log(auth.currentUser.displayName, auth.currentUser.email);
         alert("Your Profile has been updated");
     };
   

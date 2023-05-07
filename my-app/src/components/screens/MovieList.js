@@ -5,23 +5,29 @@ import {
     TouchableWithoutFeedback,
     SafeAreaView,
     Text,
+    TouchableOpacity,
   } from "react-native";
   import { MaterialCommunityIcons } from "@expo/vector-icons";
   import { useContext, useEffect, useState } from "react";
   import Constants from 'expo-constants';
-  // import MovieListContext from "../../context/MovieListContext";
   import ListItem from "../ListItem";  //single item
   import FavoritesContext from "../../context/FavoritesContext";
 import CustomInput from "../shared/CustomInput";
+
   
   //Parent of ListItem
   //displays a list of items
-  export default function MovieList() {
-    
+  export default function MovieList({navigation}) {
     const {FavoriteList, addFavItem} = useContext(FavoritesContext);
     const [search, setSearch] = useState('');
     const [movieData, setMovieData] = useState([]);
     const API_KEY= 'e9dc20d0';
+
+    
+    const navigateToMovieDetails = (movie) => {
+        navigation.navigate("MovieDetails", { movie });
+      };
+    
 
     //fetch movie results
     useEffect(() => {
@@ -62,19 +68,19 @@ import CustomInput from "../shared/CustomInput";
           data={movieData}
           keyExtractor={(movieData) => movieData.imdbID}
           renderItem={({ item }) => (
-            <View>
+            <TouchableOpacity onPress={() => navigateToMovieDetails(item)}>
               <ListItem
                   data = {item}
                 />
                 <TouchableWithoutFeedback onPress={() => addFavItem(item)}>
                     <MaterialCommunityIcons
                         name="heart-outline"
-                        size={100}
+                        size={80}
                         color="red"
                         style={styles.heart}
                     />
                 </TouchableWithoutFeedback>
-            </View>
+            </TouchableOpacity>
           )}
         />
       </>
@@ -154,7 +160,9 @@ import CustomInput from "../shared/CustomInput";
     heart: {
         position: "relative",
         top: -560, 
-        right: -20,   
+        right: -30, 
+        margin: 0,
+        padding: 0,  
     },
   });
   

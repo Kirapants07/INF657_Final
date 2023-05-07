@@ -9,10 +9,9 @@ import SignUpScreen from './src/components/screens/SignUpScreen';
 import ForgotPasswordScreen from './src/components/screens/ForgotPasswordScreen';
 import ProfilePage from './src/components/screens/ProfilePage';
 import FavoritesScreen from './src/components/screens/FavoritesScreen';
-import ItemList from './src/components/ItemList';
 import { FavoritesProvider } from './src/context/FavoritesContext';
-import MovieDetailsScreen from './src/components/screens/MovieDetailsScreen';
 import MovieList from './src/components/screens/MovieList';
+import MovieDetailsScreen from './src/components/screens/MovieDetailsScreen';
 
 const Stack = createStackNavigator(); //stack naviagator
 const AuthStack = createStackNavigator(); //auth stack pages
@@ -23,7 +22,7 @@ function HomeStack() {
   return (
       <Stack.Navigator screenOptions={{headerShown: false}}>
           <Stack.Screen name ="Movie List" component={MovieList} />
-          <Stack.Screen name ="Movie Details" component={MovieDetailsScreen} />
+          <Stack.Screen name ="MovieDetails" component={MovieDetailsScreen} />
       </Stack.Navigator>
   );
 }
@@ -39,7 +38,7 @@ function TabNavigator() {
     >
       <Tab.Screen
         name="Movie List"
-        component={MovieList}
+        component={HomeStack}
         options={{
           tabBarIcon: ({ size }) => (
             <MaterialCommunityIcons name="home" color={"black"} size={size} />
