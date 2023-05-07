@@ -1,14 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
-import { StyleSheet, View, Text, Image, TouchableOpacity, SafeAreaView, ScrollView } from "react-native";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-import FavoritesContext from "../../context/FavoritesContext";
+import React, { useEffect, useState } from "react";
+import { StyleSheet, View, Text, Image, SafeAreaView, ScrollView } from "react-native";
 
 
-const MovieDetailsScreen = ({navigation, route}) => {
+const MovieDetailsScreen = ({route}) => {
 
-  // const {FavoriteList, addFavItem} = useContext(FavoritesContext);
   const [movieDetails, setMovieDetails] = useState([]);
-
   const { item, API_KEY } = route.params;
 
   // fetch movie results
@@ -21,6 +17,7 @@ const MovieDetailsScreen = ({navigation, route}) => {
                 //if results found, map and display
                 if (movieList.Response == "True"){
                     setMovieDetails(movieList);
+                    console.log(item);
                 }
             } catch (err) {
                 console.log(err);
@@ -87,39 +84,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginVertical: 10,
     color: "gray",
-  },
-  quantityContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginBottom: 20,
-  },
-  button: {
-    backgroundColor: "#FF6347",
-    borderRadius: 20,
-    height: 40,
-    width: 40,
-    justifyContent: "center",
-    alignItems: "center",
-    marginHorizontal: 10,
-  },
-  quantity: {
-    fontSize: 18,
-    fontWeight: "bold",
-    marginHorizontal: 10,
-  },
-  addToCartButton: {
-    backgroundColor: "#FF6347",
-    borderRadius: 20,
-    height: 40,
-    width: "100%",
-    justifyContent: "center",
-    alignItems: "center",
-    marginVertical: 20,
-  },
-  addToCartText: {
-    fontSize: 18,
-    fontWeight: "bold",
-    color: "#fff",
   },
 });
 

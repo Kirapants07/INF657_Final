@@ -1,13 +1,10 @@
 import {
-    Image,
     StyleSheet,
     Text,
     View,
-    useWindowDimensions,
   } from "react-native";
   import React, { useState } from "react";
   import { auth } from "../../firebase";
-  import defaultUser from "../../../assets/defaultUser.jpg";
 import CustomInput from "../shared/CustomInput";
 import CustomButton from "../shared/CustomButton";
 import { UserAuth } from "../../context/AuthContext";
@@ -16,7 +13,6 @@ export default function ProfilePage() {
     const [email, setEmail] = useState(auth.currentUser.email);
     const [username, setUsername] = useState("");
   
-    const { height } = useWindowDimensions();
     const { updateUser } = UserAuth();
   
     const onEdit = async (e) => {
@@ -44,11 +40,6 @@ export default function ProfilePage() {
   
     return (
       <View style={styles.main}>
-        <Image
-          source={defaultUser}
-          style={(styles.defaultUser, { height: height * 0.3 })}
-          resizeMode="contain"
-        />
         <Text style={styles.title}>Profile</Text>
         <CustomInput placeholder="Email" value={email} setValue={setEmail} />
         <CustomInput
@@ -69,6 +60,5 @@ export default function ProfilePage() {
       backgroundColor: "#f5f5f5",
       padding: 40,
     },
-    defaultUser: { width: "70%", height: 100, maxHeight: 100, maxWidth: 500 },
     title: { fontSize: 30, fontWeight: "bold" },
   });

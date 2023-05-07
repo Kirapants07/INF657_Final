@@ -8,7 +8,6 @@ import {
 import Swipeable from "react-native-gesture-handler/Swipeable";
 
 
-//Child of ItemList
 //A Single item in the Movie list
 export default function ListItem({
   data,
@@ -51,17 +50,4 @@ const styles = StyleSheet.create({
     padding: 5,
     color: "black",
   },
-  description: {
-    fontWeight: "normal",
-    fontSize: 25,
-    padding: 5,
-    color: "black",
-  },
-  checkBox: {
-    width: 20,
-    height: 20,
-    marginRight: 30,
-    marginLeft: 0,
-    border: "white",
-  }
 });

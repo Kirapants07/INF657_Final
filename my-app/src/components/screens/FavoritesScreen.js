@@ -59,64 +59,13 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  screen: {
-    flex: 1,
-  },
-  container: {
-    padding: 20,
-    paddingTop: 100,    
-  },
-  secondContainer: {
-    padding: 20,
-    paddingTop: 50,
-  },
-  image: {
-    width: "100%",
-    height: 200,
-  },
-  title: {
-    fontWeight: "bold",
-    marginBottom: 7,
-  },
-  description: {
-    color: "#fff",
-    fontWeight: "bold",
-  },
   deleteContainer: {
     backgroundColor: "red",
     width: 70,
     justifyContent: "center",
     alignItems: "center",
   },
-  editContainer: {
-    backgroundColor: "yellow",
-    width: 70,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  input: {
-    borderWidth: 1,
-    borderColor: "#ccc",
-    borderRadius: 5,
-    padding: 10,
-    marginBottom: 20,
-    width: "100%",
-  },
-  button: {
-    backgroundColor: "#0a5273",
-    padding: 10,
-    borderRadius: 5,
-    marginTop: 20,
-    width: "100%",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  buttonText: {
-    color: "#fff",
-    fontWeight: "bold",
-    fontSize: 16,
-  },
-    center: {
+  center: {
       textAlign: "center",
   },
 });

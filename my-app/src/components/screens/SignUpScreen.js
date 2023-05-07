@@ -1,6 +1,5 @@
-import { StyleSheet, Text, View, Image, useWindowDimensions } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import React, { useState } from 'react';
-import defaultUser from "../../../assets/defaultUser.jpg";
 import CustomInput from '../shared/CustomInput';
 import CustomButton from '../shared/CustomButton';
 import { UserAuth } from '../../context/AuthContext';
@@ -11,8 +10,6 @@ export default function SignUpScreen() {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [email, setEmail] = useState('');
-
-    const {height} = useWindowDimensions();
 
     const navigation = useNavigation();
 
@@ -47,17 +44,13 @@ export default function SignUpScreen() {
 
   return (
     <View style={styles.main}>
-        <Image source={defaultUser} style={(styles.defaultUser, {height: height * 0.3})} resizeMode="contain" />   
-        {/* <Image source={defaultUser} style={styles.defaultUser} />     */}
         <Text><h1 style={styles.title}>Create an Account</h1></Text>
         <CustomInput placeholder="Username" value={username} setValue={setUsername} />
         <CustomInput placeholder="Email" value={email} setValue={setEmail} />
         <CustomInput placeholder="Password" value={password} setValue={setPassword} secureTextEntry={true} />
         <CustomInput placeholder="Confirm Password" value={confirmPassword} setValue={setConfirmPassword} secureTextEntry={true} />
-
         <CustomButton text="Sign Up" onPress={onRegister} />
         <CustomButton text="Already have an account? Log In" onPress={onLogIn} bgColor="#f5c542" />
-
     </View>
   );
 }
@@ -66,13 +59,6 @@ const styles = StyleSheet.create({
     main: {
         alignItems: "center",
         backgroundColor: "#f5f5f5"
-    },
-    defaultUser: {
-        height: 100,
-        padding:40,
-        width: "70%",
-        maxHeight: 100,
-        maxWidth: 500,
     },
     title: {
         contSize: 50,

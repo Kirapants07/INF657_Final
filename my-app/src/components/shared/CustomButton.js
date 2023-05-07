@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native'
+import { Pressable, StyleSheet, Text } from 'react-native'
 import React from 'react'
 
 export default function CustomButton({onPress, text, type="PRIMARY", bgColor}) {

@@ -1,4 +1,4 @@
-import { useState, useEffect, createContext, useContext } from "react";
+import { useState, useEffect, createContext} from "react";
 import {
   addDoc,
   collection,
@@ -8,23 +8,15 @@ import {
   limit,
   orderBy,
   query,
-  updateDoc,
 } from "firebase/firestore";
 import { db } from "../firebase";
-import { UserAuth } from "./AuthContext";
 
 
 const FavoritesContext = createContext();
 
 export const FavoritesProvider = ({children}) => {
 
-  const {user } = UserAuth();
-
   const [FavoriteList, setFavoriteList] = useState([]);
-  // const [FavoriteListEdit, setFavoriteListEdit] = useState({
-  //   item: {},
-  //   edit: false,
-  // });
 
   useEffect (() => {
     const fetchItem = async () => {
@@ -69,35 +61,6 @@ export const FavoritesProvider = ({children}) => {
     }
   };
   
-  // //edit Item
-  // const editFavItem = (item) => {
-  //   setFavoriteListEdit({ item, edit: true });
-  // };
-
-  // //Update Item
-  // const updateFavItem = async (id, updItem) => {
-  //   try {
-  //     const docRef = doc(db, "MovieList", id);
-  //     await updateDoc(docRef, updItem);
-  //     const updatedFavoriteList = FavoriteList.map((item) => {
-  //       if (item.id === id) {
-  //         return {
-  //           id,
-  //           data: {
-  //             ...item.data,
-  //             ...updItem,
-  //           },
-  //         };
-  //       } else {
-  //         return item;
-  //       }
-  //     });
-  //     setFavoriteList(updatedFavoriteList);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
   //Delete Item
   const deleteFavItem = async (id) => {
         try {

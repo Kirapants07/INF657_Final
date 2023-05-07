@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image, useWindowDimensions } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import React, { useState } from 'react';
 import CustomInput from '../shared/CustomInput';
 import CustomButton from '../shared/CustomButton';
@@ -21,10 +21,8 @@ export default function ForgotPasswordScreen() {
     <View style={styles.main}>
         <Text><h1 style={styles.title}>Reset Password</h1></Text>
         <CustomInput placeholder="Email" value={email} setValue={setEmail} />
-
         <CustomButton text="Send Reset Password Link" onPress={onConfirm} bgColor="#f5c542" />
         <CustomButton text="Back to Sign In" onPress={onHandle} />
-
     </View>
   );
 }
@@ -34,13 +32,6 @@ const styles = StyleSheet.create({
         flex:1,
         alignItems: "center",
         backgroundColor: "#f5f5f5"
-    },
-    defaultUser: {
-        height: 100,
-        padding:40,
-        width: "70%",
-        maxHeight: 100,
-        maxWidth: 500,
     },
     title: {
         contSize: 50,
