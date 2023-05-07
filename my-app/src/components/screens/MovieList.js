@@ -35,7 +35,7 @@ import CustomInput from "../shared/CustomInput";
                     if (movieList.Response == "True"){
 
                         movieList = movieList.Search.map((doc) => ({
-                            id: doc.imdbID,
+                            imdbID: doc.imdbID,
                             Title: doc.Title,
                             Year: doc.Year,
                             Poster: doc.Poster,

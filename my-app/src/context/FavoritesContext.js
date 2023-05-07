@@ -47,9 +47,9 @@ export const FavoritesProvider = ({children}) => {
   },[]);
 
   //Add Item
-  const addFavItem = (newItem) => {
+  const addFavItem = async (newItem) => {
     try{
-        const docRef = addDoc(collection (db, "Movielist"), newItem);
+        const docRef = await addDoc(collection (db, "Movielist"), newItem);
         console.log("Document written: " + docRef.id);
         setFavoriteList((previousFavoriteList) => [
           ...previousFavoriteList, 
