@@ -17,7 +17,6 @@ import FavoritesContext from "../context/FavoritesContext";
 export default function ListItem({
   data,
   renderRightActions,
-  renderLeftActions,
 }) {
   
   const {FavoriteList, deleteItem, addFavItem } = useContext(FavoritesContext);
@@ -27,8 +26,7 @@ export default function ListItem({
   };
 
   return (
-    <Swipeable renderRightActions={renderRightActions} 
-    renderLeftActions={renderLeftActions}>
+    <Swipeable renderRightActions={renderRightActions} >
       <TouchableHighlight underlayColor={"#lightgrey"}>
         <>
           <View style={styles.mainContainer}>
@@ -51,7 +49,7 @@ const styles = StyleSheet.create({
     padding: 25,
     paddingTop: 50,
     marginBottom:5,
-    width: 450,
+    width: "100%",
     justifyContent: "center",
     alignItems: "center",
   },

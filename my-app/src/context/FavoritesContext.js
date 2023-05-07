@@ -39,7 +39,6 @@ export const FavoritesProvider = ({children}) => {
                 Year: doc.data().Year,
                 Poster: doc.data().Poster,
             }));
-            console.log(favoriteList);
             setFavoriteList(favoriteList);
         }
         catch (error) {

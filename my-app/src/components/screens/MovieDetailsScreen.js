@@ -1,68 +1,61 @@
-import React, { useContext, useState } from "react";
-import { StyleSheet, View, Text, Image, TouchableOpacity } from "react-native";
+import React, { useContext, useEffect, useState } from "react";
+import { StyleSheet, View, Text, Image, TouchableOpacity, SafeAreaView, ScrollView } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import FavoritesContext from "../../context/FavoritesContext";
 
 
-const MovieDetailsScreen = () => {
+const MovieDetailsScreen = ({movieID, API_KEY}) => {
 
-  const {FavoriteList, addFavItem} = useContext(FavoritesContext);
+  // const {FavoriteList, addFavItem} = useContext(FavoritesContext);
+  const [movieDetails, setMovieDetails] = useState([]);
 
-  //fetch movie results
-  // useEffect(() => {
-  //   const fetchMovies = async () =>{
-  //       if (search !== "") {
-  //           try{
-  //               const response =  await fetch(`https://www.omdbapi.com/?s=${search}&apikey=${API_KEY}`);
-  //               let movieList = await response.json();
 
-  //               //if results found, map and display
-  //               if (movieList.Response == "True"){
+  // fetch movie results
+  useEffect(() => {
+    const fetchMovies = async () =>{
+            try{
+                // const response =  await fetch(`https://www.omdbapi.com/?i=${movieID}&apikey=${API_KEY}`);
+                const response =  await fetch(`https://www.omdbapi.com/?i=tt1646971&apikey=e9dc20d0`);
+                let movieList = await response.json();
 
-  //                   movieList = movieList.Search.map((doc) => ({
-  //                       imdbID: doc.imdbID,
-  //                       Title: doc.Title,
-  //                       Year: doc.Year,
-  //                       Poster: doc.Poster,
-  //                   }));
-  //                   setMovieData(movieList);
-  //               }
-  //           } catch (err) {
-  //               console.log(err);
-  //           }
-  //         }
-  //       }
-  //       fetchMovies();
-  //   }, [search] );
+                //if results found, map and display
+                if (movieList.Response == "True"){
 
-//   <View style={styles.imageContainer}>
-//   <Image style={styles.image} source={{ uri: data.image }} />
-// </View>
-// <View style={styles.detailsContainer}>
-//   <View style={styles.quantityContainer}>
-//     {/* <TouchableOpacity
-//       style={styles.button}
-//       onPress={() => setFavorite((prev) => !prev)}
-//     >
-//       <MaterialCommunityIcons name="heart" size={24} color="pink" />
-//     </TouchableOpacity> */}
-//     <Text style={styles.quantity}>{favorite}</Text>
-//   </View>
-//   <TouchableOpacity
-//     style={styles.addToCartButton}
-//     // onPress={}
-//   >
-//     <MaterialCommunityIcons name="heart" size={24} color="pink" />
-//     <Text style={styles.addToCartText}>Add to Favorites</Text>
-//   </TouchableOpacity>
-// </View>
-
+                    // movieList = movieList.Search.map((doc) => ({
+                    //     imdbID: doc.imdbID,
+                    //     Title: doc.Title,
+                    //     Year: doc.Year,
+                    //     Poster: doc.Poster,
+                    // }));
+                    setMovieDetails(movieList);
+                    // console.log(API_KEY);
+                    console.log(movieID);
+                }
+            } catch (err) {
+                console.log(err);
+            }
+          }
+        fetchMovies();
+    }, [] );
 
 
   return (
-    <View style={styles.container}>
-      <Text>Movie Details</Text>
-    </View>
+    <SafeAreaView style={styles.container}>
+      <ScrollView showsVerticalScrollIndicator="false" > 
+        <View style={styles.imageContainer}>
+          <Image style={styles.image} source={movieDetails.Poster}/>
+        </View>
+        <View style={styles.detailsContainer}>
+          <Text>movieID: {movieID}</Text>
+          <Text style={styles.title}>{movieDetails.Title} ({movieDetails.Year})</Text>
+          <Text style={styles.details}>{movieDetails.Rated}     {movieDetails.Runtime}    {movieDetails.Language}      {movieDetails.imdbRating}/10</Text>
+          <Text style={styles.Plot}>{movieDetails.Plot}</Text>
+          <Text style={styles.subdetails}>{movieDetails.Genre}</Text>
+          <Text style={styles.subdetails}>Director: {movieDetails.Director}</Text>
+          <Text style={styles.subdetails}>Writer: {movieDetails.Writer}</Text>
+        </View>
+      </ScrollView>
+  </SafeAreaView>
   );
 };
 
@@ -70,9 +63,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
+    justifyContent: "center",
+    alignItems: "center",
   },
   imageContainer: {
-    height: "50%",
+    height: "70%",
     width: "100%",
     backgroundColor: "#ccc",
     justifyContent: "center",
@@ -85,14 +80,23 @@ const styles = StyleSheet.create({
   detailsContainer: {
     padding: 20,
   },
-  name: {
-    fontSize: 24,
+  title: {
+    fontSize: 70,
     fontWeight: "bold",
   },
-  price: {
-    fontSize: 20,
-    fontWeight: "bold",
+  Plot: {
+    fontSize: 30,
     marginVertical: 10,
+  },
+  details: {
+    fontSize: 30,
+    marginVertical: 10,
+    color: "gray",
+  },
+  subdetails: {
+    fontSize: 20,
+    marginVertical: 10,
+    color: "gray",
   },
   quantityContainer: {
     flexDirection: "row",

@@ -13,6 +13,7 @@ import {
   import ListItem from "../ListItem";  //single item
   import FavoritesContext from "../../context/FavoritesContext";
 import CustomInput from "../shared/CustomInput";
+import CustomButton from "../shared/CustomButton";
 
   
   //Parent of ListItem
@@ -24,9 +25,9 @@ import CustomInput from "../shared/CustomInput";
     const API_KEY= 'e9dc20d0';
 
     
-    const navigateToMovieDetails = (movie) => {
-        navigation.navigate("MovieDetails", { movie });
-      };
+    // const navigateToMovieDetails = (movie) => {
+    //     navigation.navigate("MovieDetails", { move: movie, API_KEY: API_KEY });
+    //   };
     
 
     //fetch movie results
@@ -68,10 +69,18 @@ import CustomInput from "../shared/CustomInput";
           data={movieData}
           keyExtractor={(movieData) => movieData.imdbID}
           renderItem={({ item }) => (
-            <TouchableOpacity onPress={() => navigateToMovieDetails(item)}>
-              <ListItem
-                  data = {item}
+            <View >
+                <CustomButton text="details" 
+                  onPress={() => {
+                    navigation.navigate('MovieDetails', {
+                      itemId: 86,
+                      otherParam: 'anything you want here',
+                    });
+                  }}
                 />
+                    <ListItem
+                        data = {item}
+                    />
                 <TouchableWithoutFeedback onPress={() => addFavItem(item)}>
                     <MaterialCommunityIcons
                         name="heart-outline"
@@ -80,7 +89,7 @@ import CustomInput from "../shared/CustomInput";
                         style={styles.heart}
                     />
                 </TouchableWithoutFeedback>
-            </TouchableOpacity>
+            </View>
           )}
         />
       </>
@@ -154,15 +163,19 @@ import CustomInput from "../shared/CustomInput";
       fontSize: 16,
     },
       center: {
+        justifyContent: "center",
+        alignItems: "center",
         textAlign: "center",
         width: 400,
     },
     heart: {
         position: "relative",
-        top: -560, 
-        right: -30, 
+        top: "-95%", 
+        left: "-2%", 
         margin: 0,
         padding: 0,  
+        width: 0,
+        height: 0,
     },
   });
   
